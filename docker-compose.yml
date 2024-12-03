@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - '8000:8000'
     environment:
       DATABASE_URL: 'postgresql+psycopg2://postgres:password@r2r-db:5432/postgres'
     depends_on:
@@ -19,8 +17,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
-    ports:
-      - '5432:5432'
     volumes:
       - 'pg_data:/var/lib/postgresql/data'
     restart: unless-stopped
