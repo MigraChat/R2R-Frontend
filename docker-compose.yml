@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8000:8000'
-    networks:
-      - o0ssg00s8s8w048so4sogkoc
     environment:
       DATABASE_URL: 'postgresql+psycopg2://postgres:password@r2r-db:5432/postgres'
     depends_on:
@@ -28,6 +26,3 @@ services:
     restart: unless-stopped
 volumes:
   pg_data: null
-networks:
-  o0ssg00s8s8w048so4sogkoc:
-    external: true
