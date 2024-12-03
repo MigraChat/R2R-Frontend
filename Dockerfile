@@ -35,4 +35,4 @@ RUN poetry install -E "core ingestion-bundle" --no-dev
 EXPOSE 8000
 
 # Add a command to run your application
-CMD ["poetry", "run", "r2r", "serve"]
+# CMD ["poetry", "run", "r2r", "serve"]
