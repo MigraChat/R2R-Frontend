@@ -4,6 +4,7 @@ FROM python:3.10-slim
 # Set environment variables to optimize Python
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PATH="/root/.local/bin:$PATH"
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -20,9 +21,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Poetry using pipx
 RUN pipx install poetry
 
-# Set pipx's binary directory to PATH
-ENV PATH="/root/.local/bin:$PATH"
-
 # Set work directory
 WORKDIR /app
 
@@ -32,3 +30,9 @@ RUN git clone --depth 1 https://github.com/SciPhi-AI/R2R.git /app/R2R
 # Install R2R dependencies using Poetry
 WORKDIR /app/R2R/py
 RUN poetry install -E "core ingestion-bundle" --no-dev
+
+# Expose a port if needed
+EXPOSE 8000
+
+# Add a command to run your application
+CMD ["poetry", "run", "r2r", "start"]
