@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  r2r-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    networks:
+      - o0ssg00s8s8w048so4sogkoc
+    environment:
+      DATABASE_URL: 'postgresql+psycopg2://postgres:password@r2r-db:5432/postgres'
+    depends_on:
+      - postgres-db
+    volumes:
+      - '.:/app'
+  r2r-db:
+    image: ankane/pgvector
+    container_name: r2r-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'pg_data:/var/lib/postgresql/data'
+    restart: unless-stopped
+volumes:
+  pg_data: null
+networks:
+  o0ssg00s8s8w048so4sogkoc:
+    external: true
