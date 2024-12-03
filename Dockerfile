@@ -32,6 +32,3 @@ RUN git clone --depth 1 https://github.com/SciPhi-AI/R2R.git /app/R2R
 # Install R2R dependencies using Poetry
 WORKDIR /app/R2R/py
 RUN poetry install -E "core ingestion-bundle" --no-dev
-
-# Set the default command
-CMD ["bash"]
