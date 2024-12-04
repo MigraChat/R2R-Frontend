@@ -36,4 +36,4 @@ EXPOSE 8000
 EXPOSE 7272
 
 # Set the command to run the application
-CMD ["r2r", "--config-name=default", "serve"]
+CMD ["r2r", "serve"]
