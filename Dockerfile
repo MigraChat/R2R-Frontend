@@ -24,8 +24,11 @@ RUN pipx install poetry
 # Set work directory
 WORKDIR /app
 
-# Clone R2R repository (use a specific release or commit for reproducibility)
-RUN git clone --depth 1 https://github.com/SciPhi-AI/R2R.git /app/R2R
+# Clone the repository with the last 10 commits for a buffer
+RUN git clone --depth 10 https://github.com/SciPhi-AI/R2R.git /app/R2R && \
+    cd /app/R2R && \
+    # Ensure the desired fallback commit is checked out
+    git checkout 17a34e6
 
 # Install R2R dependencies using Poetry
 WORKDIR /app/R2R/py
