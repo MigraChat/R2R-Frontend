@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry using pipx
-RUN pipx install poetry
+RUN pipx install r2r
 
 # Set work directory
 WORKDIR /app
@@ -30,11 +30,11 @@ RUN git clone --depth 1 --branch v3.2.30 https://github.com/SciPhi-AI/R2R.git /a
 
 # Install R2R dependencies using Poetry
 WORKDIR /app/R2R/py
-RUN poetry install --all-extras --with dev
+RUN pipx install 'r2r[core,ingestion-bundle]'
 
 # Expose application ports
 EXPOSE 8000
 EXPOSE 7272
 
 # Set the command to run the application
-CMD ["poetry", "run", "r2r", "serve"]
+CMD ["r2r", "serve"]
