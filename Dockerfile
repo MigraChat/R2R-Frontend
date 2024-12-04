@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \
     libpq-dev \
+    PyJWT \
     && python -m pip install --upgrade pip setuptools \
     && python -m pip install pipx \
     && pipx ensurepath \
@@ -37,4 +38,4 @@ EXPOSE 8000
 EXPOSE 7272
 
 # Set the command to run the application
-CMD ["r2r", "serve"]
+CMD ["r2r", "--config-name=default", "serve"]
