@@ -1,4 +1,4 @@
-OSE # Use an official Python base image
+# Use an official Python base image
 FROM python:3.10-slim
 
 # Set environment variables to optimize Python
