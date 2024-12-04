@@ -30,8 +30,7 @@ RUN git clone --depth 1 --branch v3.2.30 https://github.com/SciPhi-AI/R2R.git /a
 
 # Install R2R dependencies using Poetry
 WORKDIR /app/R2R/py
-RUN poetry install --extras core
-RUN poetry install --extras ingestion-bundle
+RUN poetry install --all-extras --with dev
 
 # Expose application ports
 EXPOSE 8000
