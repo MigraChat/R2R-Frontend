@@ -1,4 +1,4 @@
-# Use an official Python base image
+OSE # Use an official Python base image
 FROM python:3.10-slim
 
 # Set environment variables to optimize Python
@@ -33,6 +33,7 @@ RUN poetry install -E "core ingestion-bundle" --no-dev
 
 # Expose a port if needed
 EXPOSE 8000
+EXPOSE 7272
 
 # Add a command to run your application
 CMD ["poetry", "run", "r2r", "serve"]
