@@ -34,9 +34,6 @@ WORKDIR /workspaces/R2R-Frontend/R2R-Application
 
 # Ensure pnpm is updated and usable
 RUN pnpm update
-# RUN pnpm env use --global lts
-
-# Install and build the frontend application
 RUN pnpm install
 RUN pnpm build
 
@@ -45,4 +42,4 @@ EXPOSE 3000
 EXPOSE 7272
 
 # Set default command to r2r serve and pnpm start
-CMD ["sh", "-c", "r2r serve & pnpm start"]
+CMD ["bash", "-c", "r2r serve & pnpm start"]
