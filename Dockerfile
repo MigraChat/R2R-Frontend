@@ -43,4 +43,4 @@ EXPOSE 7272
 
 ENV PATH="/root/.local/bin:$PATH"
 # Set default command to r2r serve and pnpm start
-CMD ["bash", "-c", "r2r serve & pnpm start"]
+CMD ["r2r", "serve"]
