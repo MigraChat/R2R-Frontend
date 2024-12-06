@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      DATABASE_URL: 'postgresql+psycopg2://postgres:password@r2r-db:5432/postgres'
+      DATABASE_URL: 'postgresql+psycopg2://${R2R_POSTGRES_USER}:${R2R_POSTGRES_PASSWORD}@${R2R_POSTGRES_HOST}:${R2R_POSTGRES_PORT}/${R2R_POSTGRES_DBNAME}'
     depends_on:
       - r2r-db
     volumes:
