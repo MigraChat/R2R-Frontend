@@ -1,9 +1,9 @@
-version: '3.8'
 services:
   r2r-app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: r2r-app
     environment:
       DATABASE_URL: 'postgresql+psycopg2://${R2R_POSTGRES_USER}:${R2R_POSTGRES_PASSWORD}@${R2R_POSTGRES_HOST}:${R2R_POSTGRES_PORT}/${R2R_POSTGRES_DBNAME}'
     depends_on:
