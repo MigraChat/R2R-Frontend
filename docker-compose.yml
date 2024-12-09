@@ -10,6 +10,8 @@ services:
       - r2r-db
     volumes:
       - '.:/app'
+    healthcheck:
+      test: curl --fail http://localhost:7272 || exit 1
   r2r-db:
     image: ankane/pgvector
     container_name: r2r-db
