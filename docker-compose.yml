@@ -1,26 +1,39 @@
 services:
-  r2r-app:
+  r2r-web:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: r2r-app
-    environment:
-      DATABASE_URL: 'postgresql+psycopg2://${R2R_POSTGRES_USER}:${R2R_POSTGRES_PASSWORD}@${R2R_POSTGRES_HOST}:${R2R_POSTGRES_PORT}/${R2R_POSTGRES_DBNAME}'
+      dockerfile: Dockerfile.web
+    container_name: r2r-web
+    env_file:
+      - .env.web
+    depends_on:
+      - r2r-api
+    volumes:
+      - '.:/app'
+    healthcheck:
+      test: curl --fail http://localhost:3000 || exit 1
+  r2r-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: r2r-api
+    env_file:
+      - .env.api
     depends_on:
       - r2r-db
     volumes:
       - '.:/app'
     healthcheck:
-      test: curl --fail http://localhost:7272 || exit 1
+      test: curl --fail http://localhost:7272/v3/health || exit 1
   r2r-db:
     image: ankane/pgvector
     container_name: r2r-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres
+    env_file:
+      - .env.db
     volumes:
       - 'pg_data:/var/lib/postgresql/data'
+    healthcheck:
+      test: pg_isready -U postgres
     restart: unless-stopped
 volumes:
   pg_data: null

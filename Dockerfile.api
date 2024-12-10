@@ -1,0 +1,32 @@
+# Use an official Python 3.12 base image
+FROM python:3.12-slim
+
+# Set environment variables to optimize Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies including curl, git, and PostgreSQL prerequisites
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    build-essential \
+    libpq-dev \
+    ca-certificates \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip and install pipx
+RUN python -m pip install --upgrade pip setuptools \
+    && python -m pip install pipx \
+    && pipx ensurepath
+
+# Install R2R CLI with additional dependencies
+RUN pipx install 'r2r[core,ingestion-bundle]'
+
+# Expose application ports
+EXPOSE 7272
+
+# Add pipx binaries to PATH
+ENV PATH="/root/.local/bin:$PATH"
+
+# Set default command to r2r serve
+CMD ["r2r", "serve"]

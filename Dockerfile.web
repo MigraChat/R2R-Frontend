@@ -1,0 +1,26 @@
+# Use an official Python 3.12 base image
+FROM node:lts-alpine
+
+# Install system dependencies including curl, git, and Node.js prerequisites
+RUN apk add --no-cache \
+    curl \
+    git \
+    build-base \
+    postgresql-dev \
+    ca-certificates
+
+RUN git clone --depth 1 https://github.com/SciPhi-AI/R2R-Application.git /workspaces/R2R-Frontend/R2R-Application
+WORKDIR /workspaces/R2R-Frontend/R2R-Application
+
+# Ensure pnpm is updated and usable
+RUN npm install -g pnpm
+RUN pnpm update
+RUN pnpm install
+RUN pnpm build
+
+# Expose application ports
+EXPOSE 3000
+
+ENV PATH="/root/.local/bin:$PATH"
+# Set default command to pnpm start
+CMD ["pnpm", "start"]
