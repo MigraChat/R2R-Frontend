@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     postgresql-dev \
     ca-certificates
 
-RUN git clone --depth 1 https://github.com/SciPhi-AI/R2R-Application.git /workspaces/R2R-Frontend/R2R-Application
+RUN git clone --depth 1 https://github.com/admin-migra-chat/R2R-Application.git /workspaces/R2R-Frontend/R2R-Application
 WORKDIR /workspaces/R2R-Frontend/R2R-Application
 
 # Ensure pnpm is updated and usable
