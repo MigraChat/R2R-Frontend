@@ -23,4 +23,4 @@ EXPOSE 3000
 
 ENV PATH="/root/.local/bin:$PATH"
 # Set default command to pnpm start
-CMD ["node", ".next/standalone/server.js", "--host", "0.0.0.0"]
+CMD ["pnpm", "start"]
