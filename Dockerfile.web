@@ -23,5 +23,6 @@ EXPOSE 3000
 
 ENV PATH="/root/.local/bin:$PATH"
 ENV BUILD_STANDALONE true
+ENV HOSTNAME 0.0.0.0
 # Set default command to pnpm start
 CMD ["pnpm", "start"]
