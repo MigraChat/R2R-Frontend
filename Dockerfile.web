@@ -15,6 +15,7 @@ WORKDIR /workspaces/R2R-Frontend/R2R-Application
 # Ensure pnpm is updated and usable
 RUN npm install -g pnpm
 RUN pnpm update
+ENV HOSTNAME 0.0.0.0
 RUN pnpm install
 RUN pnpm build
 
@@ -22,7 +23,5 @@ RUN pnpm build
 EXPOSE 3000
 
 ENV PATH="/root/.local/bin:$PATH"
-ENV BUILD_STANDALONE true
-ENV HOSTNAME 0.0.0.0
 # Set default command to pnpm start
 CMD ["pnpm", "start"]
