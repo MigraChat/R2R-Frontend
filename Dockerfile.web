@@ -22,5 +22,6 @@ RUN pnpm build
 EXPOSE 3000
 
 ENV PATH="/root/.local/bin:$PATH"
+ENV BUILD_STANDALONE true
 # Set default command to pnpm start
 CMD ["pnpm", "start"]
