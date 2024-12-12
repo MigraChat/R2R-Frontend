@@ -1,11 +1,12 @@
-[embedding]
-provider = "ollama"
-base_model = "ollama/mxbai-embed-large"
-base_dimension = 1_024
-batch_size = 32
-add_title_as_prefix = true
-
 # Comment out until feedback on https://github.com/SciPhi-AI/R2R/issues/1690
+
+# [embedding]
+# provider = "ollama"
+# base_model = "ollama/mxbai-embed-large"
+# base_dimension = 1_024
+# batch_size = 32
+# add_title_as_prefix = true
+
 # [completion]
 # provider = "litellm"
 # concurrent_request_limit = 16 # defaults to 256
