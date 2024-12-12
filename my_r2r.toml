@@ -1,3 +1,7 @@
+[embedding]
+provider = "litellm"
+base_model = "openai/text-embedding-3-small"
+
 # Comment out until feedback on https://github.com/SciPhi-AI/R2R/issues/1690
 
 # [embedding]
