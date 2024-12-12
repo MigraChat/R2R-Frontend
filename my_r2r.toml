@@ -1,0 +1,18 @@
+[embedding]
+provider = "ollama"
+base_model = "ollama/mxbai-embed-large"
+base_dimension = 1_024
+batch_size = 32
+add_title_as_prefix = true
+
+[completion]
+provider = "litellm"
+concurrent_request_limit = 16 # defaults to 256
+
+    [completion.generation_config]
+    model = "ollama/llama3.2"
+    temperature = 0.1 # defaults to 0.1
+    top_p = 1 # defaults to 1
+    max_tokens_to_sample = 1_024 # defaults to 1_024
+    stream = true # defaults to false
+    add_generation_kwargs = {} # defaults to {}
