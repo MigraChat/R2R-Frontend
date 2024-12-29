@@ -9,13 +9,13 @@ RUN apk add --no-cache \
     postgresql-dev \
     ca-certificates
 
-RUN git clone --depth 1 https://github.com/admin-migra-chat/R2R-Application.git /workspaces/R2R-Frontend/R2R-Application
+RUN git clone --depth 1 -b feature/test-cloud-v0 --single-branch https://github.com/SciPhi-AI/R2R-Application.git /workspaces/R2R-Frontend/R2R-Application
 WORKDIR /workspaces/R2R-Frontend/R2R-Application
 
 # Ensure pnpm is updated and usable
 RUN npm install -g pnpm
 RUN pnpm update
-ENV HOSTNAME 0.0.0.0
+ENV HOSTNAME=0.0.0.0
 RUN pnpm install
 RUN pnpm build
 
